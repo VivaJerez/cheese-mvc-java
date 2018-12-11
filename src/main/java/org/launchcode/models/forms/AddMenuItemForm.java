@@ -12,11 +12,12 @@ import java.util.List;
 public class AddMenuItemForm {
     @NotNull
     private int menuId;
-    private Menu menu;
 
     @NotNull
     private int cheeseId; // adds one cheese at a time
-    private Iterable<Cheese> cheeses; // all the cheeses for the menu
+
+    private Menu menu;
+    private Iterable<Cheese> cheeses;
 
     public AddMenuItemForm() {}
 
@@ -26,7 +27,11 @@ public class AddMenuItemForm {
     }
 
     /**
-     * finds the cheese, adds it to the menu, and saves to the db
+     * finds the menu by menuId ->
+     * finds the cheese by cheeseId ->
+     * adds it to the menus associated cheeses list ->
+     * saves the updated menu to the db
+     *
      * @param menuDao access to "menus" table in db
      * @param cheeseDao access to "cheeses" table in db
      */
@@ -35,31 +40,23 @@ public class AddMenuItemForm {
         Cheese cheeseToAdd = cheeseDao.findOne(this.cheeseId);
 
         menu.addItem(cheeseToAdd);
-
         menuDao.save(menu);
     }
 
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
-
+    public Menu getMenu() { return menu; }
     public Iterable<Cheese> getCheeses() {
         return cheeses;
+    }
+    public int getMenuId() {
+        return menuId;
+    }
+    public int getCheeseId() {
+        return cheeseId;
     }
 
     public void setCheeses(Iterable<Cheese> cheeses) {
         this.cheeses = cheeses;
     }
-
-    public int getMenuId() {
-        return menuId;
-    }
-
-    public int getCheeseId() {
-        return cheeseId;
-    }
+    public void setMenuId(int menuId) { this.menuId = menuId; }
+    public void setCheeseId(int cheeseId) { this.cheeseId = cheeseId; }
 }
