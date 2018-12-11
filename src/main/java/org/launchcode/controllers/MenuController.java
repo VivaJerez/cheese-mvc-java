@@ -38,12 +38,35 @@ public class MenuController {
         templateVariables.addAttribute(new Menu());
         return "menu/add";
     }
+
+    @RequestMapping(value = "add", method = { RequestMethod.POST })
+    public String addMenu(
+        Model templateVariables,
+        @ModelAttribute @Valid Menu menu,
+        Errors errors
+    ) {
+        if (errors.hasErrors()) {
+            templateVariables.addAttribute("title", "Add Menu");
+            return "menu/add";
+        }
+
+        menuDao.save(menu);
+//        return "redirect:/menu/view/" + menu.getId();
+        return "redirect:"; // temporary
+    }
+
+    @RequestMapping(value = "view/{menuId}")
+    public String view(
+        Model templateVariables,
+        @PathVariable int menuId
+    ) {
+        Menu menu = menuDao.findOne(menuId);
+        String title = "Menu: " + menu.getName();
+        templateVariables.addAttribute("title", title);
+        templateVariables.addAttribute("menu", menu);
+        return "menu/view";
+    }
 }
-
-
-
-
-
 
 
 //@Controller

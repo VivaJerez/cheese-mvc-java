@@ -30,6 +30,8 @@ public class Menu {
     public List<Cheese> getCheeses() { return cheeses; }
 
     public void setName(String name) { this.name = name; }
+
+    public void addItem(Cheese item) { cheeses.add(item); }
 }
 
 

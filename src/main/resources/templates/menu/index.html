@@ -13,7 +13,12 @@
 
     <ul>
         <th:block th:each="menu : ${menus}">
-            <li th:text="${menu.name}"> </li>
+            <li>
+                <a th:href="'/menu/view/' + ${menu.id}"
+                   th:text="${menu.name}"
+                >
+                </a>
+            </li>
         </th:block>
     </ul>
 </body>

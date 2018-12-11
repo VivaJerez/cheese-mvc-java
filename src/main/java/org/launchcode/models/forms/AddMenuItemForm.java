@@ -30,14 +30,14 @@ public class AddMenuItemForm {
      * @param menuDao access to "menus" table in db
      * @param cheeseDao access to "cheeses" table in db
      */
-//    public void process(MenuDao menuDao, CheeseDao cheeseDao) {
-//        Menu menu = menuDao.findOne(this.menuId);
-//        Cheese cheeseToAdd = cheeseDao.findOne(this.cheeseId);
-//
-//        menu.addItem(cheeseToAdd);
-//
-//        menuDao.save(menu);
-//    }
+    public void process(MenuDao menuDao, CheeseDao cheeseDao) {
+        Menu menu = menuDao.findOne(this.menuId);
+        Cheese cheeseToAdd = cheeseDao.findOne(this.cheeseId);
+
+        menu.addItem(cheeseToAdd);
+
+        menuDao.save(menu);
+    }
 
     public Menu getMenu() {
         return menu;
